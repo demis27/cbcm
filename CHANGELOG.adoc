@@ -1,0 +1,14 @@
+= Changelog of CBCM
+Stéphane Kermabon <demis27@demis27.net>
+v0.1, 2020-02-14
+
+All notable changes to this project will be documented in this file.
+
+== Unreleased
+0.1 - 2020-02-14
+
+=== Added
+* #3 Add a changelog
+* #1 Add a README
+
+---
