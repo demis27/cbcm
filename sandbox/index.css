@@ -1,0 +1,63 @@
+.comicbook-section {
+    padding: 10px 0px 10px 0px  ;
+}
+
+.comicbook-wrapper {
+    display: flex;
+}
+
+.comicbook-wrapper-right {
+    display: block;
+}
+
+.comicbook-wrapper-left {
+    padding-right: 10px;
+    width: 290px;
+}
+
+.comicbook-wrapper-center {
+    display: flex;
+}
+
+.comicbook-wrapper-center-left {
+    padding-right: 10px;
+    width: 600px;
+}
+
+.comicbook-wrapper-center-right {
+    width: 290px;
+}
+
+.comicbook-cover {
+    border-width: 1;
+    border-style: solid;
+}
+
+.comicbook-title {
+    border-width: 1;
+    border-style: solid;
+    margin-bottom: 10px;
+    width: 900px;
+}
+
+.comicbook-details {
+    border-width: 1;
+    border-style: solid;
+    margin-bottom: 10px;
+}
+
+.comicbook-link {
+    border-width: 1;
+    border-style: solid;
+}
+
+.comicbook-notes  {
+    border-width: 1;
+    border-style: solid;
+    margin-bottom: 10px;
+}
+
+.comicbook-chronicles {
+    border-width: 1;
+    border-style: solid;
+}
