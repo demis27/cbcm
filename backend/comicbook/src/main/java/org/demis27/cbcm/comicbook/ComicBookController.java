@@ -16,7 +16,7 @@ public class ComicBookController {
 
     private final ComicBookService service;
 
-    @Get(produces = {MediaType.APPLICATION_JSON})
+    @Get(produces = MediaType.APPLICATION_JSON)
     public Flux<ComicBook> getAll() {
         return service.getAll();
     }
@@ -33,9 +33,9 @@ public class ComicBookController {
     }
 
     @Put(uri = "/{id}", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
-    public Mono<HttpResponse<ComicBook>> put(@PathVariable(name = "id") String id, @Body ComicBook comicBook) {
+    public Mono<ComicBook> put(@PathVariable(name = "id") String id, @Body ComicBook comicBook) {
         comicBook.setId(id);
-        return service.update(comicBook).map(HttpResponse::ok);
+        return service.update(comicBook);
     }
 
     @Delete(uri = "/{id}")
@@ -47,5 +47,4 @@ public class ComicBookController {
     public HttpResponse<ErrorMessage> error(HttpRequest request, ResourceNotFoundException resourceNotFoundException) {
         return HttpResponse.notFound(resourceNotFoundException.errorMessage);
     }
-
 }
