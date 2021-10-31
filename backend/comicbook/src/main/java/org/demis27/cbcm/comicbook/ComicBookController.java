@@ -2,6 +2,7 @@ package org.demis27.cbcm.comicbook;
 
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Error;
 import io.micronaut.http.annotation.*;
@@ -26,18 +27,20 @@ public class ComicBookController {
     }
 
     @Post(consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
+    @Status(HttpStatus.CREATED)
     public Mono<ComicBook> post(@Body ComicBook comicBook) {
         return service.create(comicBook);
     }
 
     @Put(uri = "/{id}", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
     public Mono<HttpResponse<ComicBook>> put(@PathVariable(name = "id") String id, @Body ComicBook comicBook) {
+        comicBook.setId(id);
         return service.update(comicBook).map(HttpResponse::ok);
     }
 
     @Delete(uri = "/{id}")
-    public void delete(@PathVariable String id) {
-
+    public Mono<HttpResponse> delete(@PathVariable String id) {
+        return service.delete(id).map(result -> HttpResponse.noContent());
     }
 
     @Error
