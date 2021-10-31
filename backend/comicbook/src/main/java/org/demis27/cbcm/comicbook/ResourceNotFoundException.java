@@ -2,10 +2,12 @@ package org.demis27.cbcm.comicbook;
 
 public class ResourceNotFoundException extends Exception {
 
-    String code;
+    public final static String RESOURCE_NOT_FOUND = "RESSOURCE_NOT_FOUND";
 
-    public ResourceNotFoundException(String code, String message) {
+    ErrorMessage errorMessage;
+
+    public ResourceNotFoundException(String message) {
         super(message);
-        this.code = code;
+        errorMessage = new ErrorMessage(RESOURCE_NOT_FOUND, message);
     }
 }

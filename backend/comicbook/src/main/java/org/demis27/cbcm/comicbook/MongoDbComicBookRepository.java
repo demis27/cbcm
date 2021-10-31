@@ -39,7 +39,7 @@ public class MongoDbComicBookRepository implements ComicBookRepository {
                     if (result.getUpsertedId() != null) {
                         return Mono.from(getCollection().find(Filters.eq("_id", comicBook.getId())).limit(1));
                     } else {
-                        return Mono.error(new ResourceNotFoundException("RESOURCE_NOT-FOUND", String.format("ComicBook with id #id: %s not found", comicBook.id)));
+                        return Mono.error(new ResourceNotFoundException(String.format("ComicBook with #id: %s not found", comicBook.id)));
                     }
                 });
     }

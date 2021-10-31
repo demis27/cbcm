@@ -1,8 +1,9 @@
 package org.demis27.cbcm.comicbook;
 
+import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
-import io.micronaut.http.MutableHttpResponse;
+import io.micronaut.http.annotation.Error;
 import io.micronaut.http.annotation.*;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
@@ -30,13 +31,18 @@ public class ComicBookController {
     }
 
     @Put(uri = "/{id}", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
-    public Mono<MutableHttpResponse<ComicBook>> put(@PathVariable(name = "id") String id, @Body ComicBook comicBook) {
-        return service.update(comicBook).map(HttpResponse::ok).onErrorReturn(HttpResponse.notFound());
+    public Mono<HttpResponse<ComicBook>> put(@PathVariable(name = "id") String id, @Body ComicBook comicBook) {
+        return service.update(comicBook).map(HttpResponse::ok);
     }
 
     @Delete(uri = "/{id}")
     public void delete(@PathVariable String id) {
 
+    }
+
+    @Error
+    public HttpResponse<ErrorMessage> error(HttpRequest request, ResourceNotFoundException resourceNotFoundException) {
+        return HttpResponse.notFound(resourceNotFoundException.errorMessage);
     }
 
 }
