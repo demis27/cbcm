@@ -14,6 +14,6 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Build with Maven
-        script:
+        run:
           - cd backend/comicbook
-        run: mvn --batch-mode --update-snapshots verify
+          - mvn --batch-mode --update-snapshots verify
