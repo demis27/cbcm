@@ -3,4 +3,4 @@ defaultPackage: org.demis27.cbcm
 testFramework: junit
 sourceLanguage: java
 buildTool: maven
-features: [ annotation-api, app-name, graalvm, http-client, java, java-application, jib, junit, kafka, kubernetes, logback, lombok, management, maven, mongo-reactive, netty-server, properties, readme, shade, testcontainers ]
+features: [ annotation-api, app-name, graalvm, http-client, java, java-application, jib, junit, logback, lombok, management, maven, mongo-reactive, netty-server, properties, readme, shade ]
