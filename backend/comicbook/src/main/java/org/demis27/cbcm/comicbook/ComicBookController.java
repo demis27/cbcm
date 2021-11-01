@@ -16,26 +16,28 @@ public class ComicBookController {
 
     private final ComicBookService service;
 
+    private final ComicBookConverter converter;
+
     @Get(produces = MediaType.APPLICATION_JSON)
-    public Flux<ComicBook> getAll() {
-        return service.getAll();
+    public Flux<ComicBookDTO> getAll() {
+        return service.getAll().map(converter::convert);
     }
 
     @Get(uri = "/{id}", produces = MediaType.APPLICATION_JSON)
-    public Mono<ComicBook> get(@PathVariable(name = "id") String id) {
-        return service.find(id);
+    public Mono<ComicBookDTO> get(@PathVariable(name = "id") String id) {
+        return service.find(id).map(converter::convert);
     }
 
     @Post(consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
     @Status(HttpStatus.CREATED)
-    public Mono<ComicBook> post(@Body ComicBook comicBook) {
-        return service.create(comicBook);
+    public Mono<ComicBookDTO> post(@Body ComicBookDTO dto) {
+        return service.create(converter.convert(dto)).map(converter::convert);
     }
 
     @Put(uri = "/{id}", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
-    public Mono<ComicBook> put(@PathVariable(name = "id") String id, @Body ComicBook comicBook) {
-        comicBook.setId(id);
-        return service.update(comicBook);
+    public Mono<ComicBookDTO> put(@PathVariable(name = "id") String id, @Body ComicBookDTO dto) {
+        dto.setId(id);
+        return service.update(converter.convert(dto)).map(converter::convert);
     }
 
     @Delete(uri = "/{id}")
